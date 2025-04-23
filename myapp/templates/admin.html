@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        /* background-color: #f4f4f9; */
+        background: #9fcaf5;
+
+        margin: 0;
+        padding: 0;
+    }
+    /* nav {
+        background-color: #333;
+        padding: 10px 20px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 15px;
+        font-weight: bold;
+    } */
+    /* nav a:hover {
+        text-decoration: underline;
+    } */
+    form {
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    form input, form button {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    form button {
+        background-color: #333;
+        color: #26ae34;
+        border: none;
+        cursor: pointer;
+    }
+    form button:hover {
+        background-color: #be5555;
+    }
+    h1, h2, h3 {
+    color: #444;
+    text-align: center;
+    margin-top: 10px;
+}
+
+</style>
+
+
+<body>
+    <a class="nav-link ms-auto text-danger fs-4 " href="/myapp/home"><b>LogOut</b></a>
+
+  <h3>Welcome to Admin portal</h3>
+    <form method="POST" action="admin" class="custom-form">
+        {% csrf_token %}
+       username <input type="text" name="name"><br>
+        password <input type="text" name="pass"><br>
+       {% if error %}
+       <p style="color: red;">{{ error }}</p>
+       {% endif %}
+        <input type="submit" value="login">
+
+    </form>
+    <!-- <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+          Admin password
+        </button>
+      </p>
+      <div style="min-height: 120px;">
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 200px;">
+            <strong>username-bhola</strong>
+            <strong>password-12345</strong>
+          </div>
+        </div>
+      </div> -->
+      
+</body>
+</html>

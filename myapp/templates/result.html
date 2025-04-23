@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <a class="nav-link ms-auto text-danger fs-4 " href="/myapp/home"><b>LogOut</b></a>
+
+    <form method="POST" enctype="multipart/form-data" action="/myapp/examresult">
+        {% csrf_token %}
+        <h1>Exam Result</h1>
+
+        <p><strong>Student Name:</strong> <input type="text" value="{{student_name}}" name="student_name" readonly>
+        </p>
+        <p><strong>Course name:</strong><input type="text" value="{{course_name}}" name="course_name" readonly></p>
+        <p><strong>Subject ID:</strong> <input type="text" value="{{ subject_id }}" name="subject_id" readonly></p>
+        <p><strong>Subject Name:</strong> <input type="text" value="{{ subject_name }}" name="subject_name" readonly>
+        </p>
+        <p><strong>Score:</strong> <input type="text" value="{{ score }}" name="score" readonly></p>
+        <p><strong>Total Questions:</strong> <input type="text" value="{{ total_questions }}" name="total_questions"
+                readonly></p>
+        <p><strong>Percentage:</strong> <input type="text" value="{{ result_percentage }}" name="result_percentage"
+                readonly></p>
+
+        <button type="submit">submit</button>
+        <!-- <button type="reset">Cancle</button> -->
+
+
+    </form>
+    <!-- <h1>Exam Result</h1>
+    <p><strong>Student Name:</strong> {{ student_name }}</p>
+    <p><strong>Subject ID:</strong> {{ subject_id }}</p>
+    <p><strong>Subject Name:</strong> {{ subject_name }}</p>
+    <p><strong>Score:</strong> {{ score }}</p>
+    <p><strong>Total Questions:</strong> {{ total_questions }}</p>
+    <p><strong>Percentage:</strong> {{ result_percentage }}%</p>
+
+    > -->
+</body>
+
+</html>

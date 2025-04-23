@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <script>
+        function fun() {
+            var selectedCourse = document.querySelector("select[name='course_name']");
+            var courseIdInput = document.getElementById('cid');
+            var selectedSubject = document.querySelector("select[name='sub_name']");
+            var subjectIdInput = document.getElementById("sid");
+
+            courseIdInput.value = selectedCourse.value;
+            subjectIdInput.value = selectedSubject.value;
+
+        }
+        function fun1() {
+            var selectedCourse = document.querySelector("select[name='course_name']").value;
+            var Student = document.getElementById('id').value;
+            
+
+            // alert(selectedCourse)
+            window.location.href = `/myapp/c/${selectedCourse}/${Student}`
+;
+        }
+
+       
+    </script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg" style='background-color: #e3f2fd;' data-bs-theme="light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">OnlineExam</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/myapp/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/myapp/regg">Registration</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/myapp/login">Student login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- Student Course Details -->
+    <div class="container mt-5">
+        <h3 class="text-center mb-4">Student Course Details</h3>
+{% if course_name %}
+        <!-- Course Selection -->
+        <div class="mb-3">
+            <label for="course_name" class="form-label">Select Course</label>
+            <select name="course_name" id="course_name" class="form-select" onchange="fun1()">
+                <option selected disabled>Select course</option>
+                {% for y in course_name %}
+                <option value="{{ y.id }}">{{ y.course_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Subject Selection -->
+              <!-- Subject Selection -->
+        <div class="mb-3">
+            <!-- <label for="sub_name" class="form-label">Select Subject</label> -->
+            <select class="form-select">
+                <option selected>Select subject</option>
+                <!-- Subjects will be dynamically populated -->
+            </select>
+        </div>
+        {% endif %}
+
+        {% if selected %}
+        <div class="mb-3">
+            <label for="course_name" class="form-label">Select Course</label>
+            <select name="course_name" id="course_name" class="form-select">
+                {% for y in selected %}
+                <option value="{{ y.id }}" aria-readonly="true">{{ y.course_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="sub_name" class="form-label">Select Subject</label>
+            <select name="sub_name" id="sub_name" class="form-select" onchange="fun()">
+
+                <option selected disabled>Select subject</option>
+                {% for x in selected %}
+                <!-- <option value="{{ x.id }}">{{ x.course_name }}</option> -->
+                {% for y in x.sub.all %}
+                
+                <option value="{{ y.sub_name }}">{{y.sub_name}}</option>
+
+                {% endfor %}
+                {% endfor %}
+                <!-- Subjects will be dynamically populated -->
+            </select>
+        </div>
+        {% endif %}
+
+   
+
+        <!-- Exam Form -->
+        <form method="POST" action="/myapp/exam">
+            {% csrf_token %}
+            <input type="hidden" id="cid" name="cid"> <!-- Course ID -->
+            <input type="hidden" id="sid" name="sid"> <!-- Subject ID -->
+            <input type="hidden" id="id" name="id" value="{{ name.id }}"> <!-- Student ID -->
+            <input type="hidden" id="subname" name="subname"> <!-- Subject Name -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Student Name</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ name.name }}" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Start Exam</button>
+        </form>
+    </div>
+</body>
+
+</html>

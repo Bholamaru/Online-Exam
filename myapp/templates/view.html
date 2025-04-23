@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">OnlineExam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/myapp/adminportal">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/courses">Add course</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/sub">Add Subject</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/view">View Student</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/addpaper">Add Paper</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/paperview">Paper View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/subview">Subject View</a></li>
+                    
+                </ul>
+                <a class="nav-link ms-auto bg-danger" href="/myapp/admin">LogOut</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Student Details</h2>
+        <!-- Responsive Table -->
+        <div class="table-responsive">
+            <table class="table table-sucess-bg-subtle table-bordered border-primary  table-striped-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in view_all %}
+                    <tr>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.mob }}</td>
+                        <td>{{ x.email }}</td>
+                        <td>{{ x.gen }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Course Details -->
+        <h2 class="text-center mt-5 mb-4">Courses</h2>
+        <ul class="list-group">
+            {% for x in form %}
+            <li class="list-group-item">{{ x.course_name }}</li>
+            {% for y in x.sub.all %}
+            <!-- <li class="list-group-item">{{y.sub_view}}</li> -->
+            <!-- {{y.sub}} -->
+             {{y.sub_name}} 
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+</body>
+</html>

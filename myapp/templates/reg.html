@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #9fcaf5;
+  color: #333;
+}
+.form-container {
+          margin: 50px auto;
+          max-width: 500px;
+          background-color: #fff; 
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+          padding: 20px;
+          text-align: center;
+      }
+      .form-title {
+          font-family: 'Arial', sans-serif;
+          margin-bottom: 20px;
+          text-align: center;
+          color: #343a40; /* Dark text color */
+      }
+      button, input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #45a049;
+}
+</style>
+<body>
+
+    <nav class="navbar navbar-expand-lg" style='background-color: #e3f2fd;' data-bs-theme="light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">OnlineExam</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/myapp/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/myapp/regg">Registration</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/myapp/login">Student login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a class="nav-link ms-auto text-danger fs-4 " href="/myapp/home"><b>LogOut</b></a>
+
+      </nav>
+
+
+
+
+
+    <div class="container">
+        
+    <!-- <button class="dashboard-button" href="/myapp/home">dashboard</button> -->
+        <div class="form-container">
+            <h2>Registration Form</h2>
+            <form method="POST" enctype="multipart/form-data" action="/myapp/regg" class="custom-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

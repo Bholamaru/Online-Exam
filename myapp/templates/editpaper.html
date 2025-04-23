@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Update Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Update Question</h2>
+        <form method="POST" action="/myapp/update/{{ed.id}}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="question" class="form-label">Question:</label>
+                <input type="text" id="question" class="form-control" placeholder="Enter question" value="{{ed.question}}" name="question" required>
+            </div>
+            <div class="mb-3">
+                <label for="option1" class="form-label">Option 1:</label>
+                <input type="text" id="option1" class="form-control" placeholder="Option 1" value="{{ed.option1}}" name="option1" required>
+            </div>
+            <div class="mb-3">
+                <label for="option2" class="form-label">Option 2:</label>
+                <input type="text" id="option2" class="form-control" placeholder="Option 2" value="{{ed.option2}}" name="option2" required>
+            </div>
+            <div class="mb-3">
+                <label for="option3" class="form-label">Option 3:</label>
+                <input type="text" id="option3" class="form-control" placeholder="Option 3" value="{{ed.option3}}" name="option3" required>
+            </div>
+            <div class="mb-3">
+                <label for="option4" class="form-label">Option 4:</label>
+                <input type="text" id="option4" class="form-control" placeholder="Option 4" value="{{ed.option4}}" name="option4" required>
+            </div>
+            <div class="mb-3">
+                <label for="answer" class="form-label">Answer:</label>
+                <input type="text" id="answer" class="form-control" placeholder="Correct Answer" value="{{ed.answer}}" name="answer" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .list-group-item {
+            background-color: #f8f9fa; /* Light background for list items */
+        }
+        .list-group-item:hover {
+            background-color: #e2e6ea; /* Slightly darker on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <a class="nav-link ms-auto text-danger fs-4 " href="/myapp/home"><b>LogOut</b></a>
+
+    <div class="container mt-4">
+
+    <h3>Course Details</h3>
+
+        <div class="row g-4 mb-3">
+            {% for x in form %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ x.course_name }}</h5>
+                            <ul class="list-group list-group-flush">
+                                {% for y in x.sub.all %}
+                                    <li class="list-group-item">{{ y.sub_name }}</li>
+                                {% endfor %}
+                            </ul>
+                            <a href="/myapp/login" class="btn btn-primary mt-3">Take the exam</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

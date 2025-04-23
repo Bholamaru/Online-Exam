@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation Bar</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            /* background: linear-gradient(135deg, #ff9a9e, #dbb1a5); */
+            background: #9fcaf5;
+        }
+
+        .nan {
+            height: 100%;
+        }
+
+        #ca {
+            margin-top: 50%;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin-bottom: 32px;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1),
+                0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+                0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12),
+                0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+        }
+
+        .l-bg-cherry {
+            background: linear-gradient(to right, #493240, #f09) !important;
+            color: #fff;
+        }
+
+        .l-bg-blue-dark {
+            background: linear-gradient(to right, #373b44, #4286f4) !important;
+            color: #fff;
+        }
+
+        .l-bg-green-dark {
+            background: linear-gradient(to right, #52dacf, #38ef7d) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange-dark {
+            background: linear-gradient(to right, #a86008, #ffba56) !important;
+            color: #fff;
+        }
+
+        .card .card-statistic-3 .card-icon-large {
+            font-size: 110px;
+        }
+
+        .card .card-statistic-3 .card-icon {
+            text-align: center;
+            line-height: 50px;
+            margin-left: 15px;
+            color: #000;
+            position: absolute;
+            right: -5px;
+            top: 20px;
+            opacity: 0.1;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange {
+            background: linear-gradient(to right, #f9900e, #ffba56) !important;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">OnlineExam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/myapp/adminportal">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/courses">Add course</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/sub">Add Subject</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/view">View Student</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/addpaper">Add Paper</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/paperview">Paper View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/subview">Subject View</a></li>
+
+                </ul>
+                <a class="nav-link ms-auto text-danger fs-4 " href="/myapp/admin"><b>LogOut</b></a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row g-4"> <!-- Row with three cards -->
+            <div class="col-md-4">
+                <a href="/myapp/sub" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Add Subject</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/myapp/view" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Students Detail</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/myapp/subview" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                            <h5 class="card-title mb-0">Subjects List</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row g-4 mt-3"> <!-- Row with two cards -->
+            <div class="col-md-4 mx-auto"> <!-- Centered horizontally -->
+                <a href="/myapp/addpaper" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Add Paper</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <a href="/myapp/paperview" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">View Paper List</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <a href="/myapp/courses" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Add courses</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row g-4 mt-3">
+            <div class="col-md-4 mx-auto"> <!-- Centered horizontally -->
+                <a href="/myapp/courseview" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Courses</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 35%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+        
+            <div class="col-md-4 mx-auto"> <!-- Centered horizontally -->
+                <a href="/myapp/viewresult" style="text-decoration:none;">
+                    <div class="card l-bg-blue-dark text-center">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <h5 class="card-title mb-0">Result</h5>
+                            <div class="progress mt-1" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

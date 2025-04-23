@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #9fcaf5;
+    color: #333;
+}
+.form-container {
+            margin: 50px auto;
+            max-width: 500px;
+            /* background-color: #9dabbd; White card background */
+            background-color: #ffffff; /* Warm peach tone */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 20px;
+        }
+        .form-title {
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #343a40; /* Dark text color */
+        }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">OnlineExam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/myapp/adminportal">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/courses">Add course</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/sub">Add Subject</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/view">View Student</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/addpaper">Add Paper</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/paperview">Paper View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/subview">Subject View</a></li>
+                    
+                </ul>
+                <a class="nav-link ms-auto bg-danger" href="/myapp/admin">LogOut</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">Submit Your Paper</h1>
+                <form method="POST" enctype="multipart/form-data" action="/myapp/addpaper">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

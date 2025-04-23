@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body><nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">OnlineExam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/myapp/adminportal">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/courses">Add course</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/sub">Add Subject</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/view">View Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/addpaper">Add Paper</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/paperview">Paper View</a></li>
+                <li class="nav-item"><a class="nav-link" href="/myapp/subview">Subject View</a></li>
+                
+            </ul>
+            <a class="nav-link ms-auto bg-danger" href="/myapp/admin">LogOut</a>
+        </div>
+    </div>
+</nav>
+    <table border="2">
+<h3> student course details</h3>
+
+        <tr>
+            <th>subject id</th>
+            <th>subject name</th>
+            <th>Actions</th>
+        </tr>
+        {% for x in sub_view %}
+        <tr>
+            <td>{{x.id}}</td>
+            <td>{{x.sub_name}}</td>
+            <td><a href="/myapp/editsub/{{x.id}}">Edit</a>
+                <a href="/myapp/deletesub/{{x.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+
+</html>

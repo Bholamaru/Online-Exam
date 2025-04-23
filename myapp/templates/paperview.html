@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <script src="{% static 'bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">OnlineExam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/myapp/adminportal">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/courses">Add course</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/sub">Add Subject</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/view">View Student</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/addpaper">Add Paper</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/paperview">Paper View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myapp/subview">Subject View</a></li>
+                    
+                </ul>
+                <a class="nav-link ms-auto bg-danger" href="/myapp/admin">LogOut</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% csrf_token %}
+        {% if questions %}
+        {% for subject, papers in questions.items %}
+        <h3 class="text-center mb-3">Subject: {{ subject }}</h3>
+        <ul class="list-group mb-3">
+            {% for pa in papers %}
+            <li class="list-group-item"><strong>Question:</strong> {{ pa.question }}</li>
+            <li class="list-group-item">1. {{ pa.option1 }}</li>
+            <li class="list-group-item">2. {{ pa.option2 }}</li>
+            <li class="list-group-item">3. {{ pa.option3 }}</li>
+            <li class="list-group-item">4. {{ pa.option4 }}</li>
+            <li class="list-group-item"><strong>Answer:</strong> {{ pa.answer }}</li>
+            <li class="list-group-item">
+                <a href="/myapp/edit/{{ pa.id }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                <a href="/myapp/delete/{{pa.id}}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+        {% endif %}
+
+        <hr>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="subjectSelect" class="form-label">Select Subject:</label>
+                <select id="subjectSelect" class="form-select">
+                    <option selected>Select Subject</option>
+                    {% for x in su %}
+                    <option value="{{ x.id }}">{{ x.sub_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <center class="mb-4"><h3>Paper List</h3></center>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Question</th>
+                        <th>Option 1</th>
+                        <th>Option 2</th>
+                        <th>Option 3</th>
+                        <th>Option 4</th>
+                        <th>Answer</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for y in pa %}
+                    <tr>
+                        <td>{{ y.question }}</td>
+                        <td>{{ y.option1 }}</td>
+                        <td>{{ y.option2 }}</td>
+                        <td>{{ y.option3 }}</td>
+                        <td>{{ y.option4 }}</td>
+                        <td>{{ y.answer }}</td>
+                        <td>
+                            <a href="/myapp/edit/{{ y.id }}" class="btn btn-sm btn-primary">Edit</a><br>
+                            <a href="/myapp/delete/{{y.id}}" class="btn btn-sm btn-outline-danger">Delete</a>
+
+
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
